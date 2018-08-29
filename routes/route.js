@@ -11,6 +11,13 @@ router.get('/getUsers', function (req, res, next) {
     })
 });
 
+router.get('/getUser', function (req, res, next) {
+    User.findOne({ username: req.query.username }, function (err, result) {
+        res.json(result);
+        console.log(result);
+    });
+});
+
 //add user
 router.post('/registerUser', function (req, res, next) {
     console.log(req.body);
@@ -18,7 +25,7 @@ router.post('/registerUser', function (req, res, next) {
         username: req.body.username,
         password: req.body.password,
         emailID: req.body.emailID,
-        watchlist: req.body.watchlist 
+        watchlist: req.body.watchlist
     });
 
     newUser.save(function (err, user) {
@@ -38,11 +45,12 @@ router.post('/registerUser', function (req, res, next) {
 
 //delete user
 router.delete('/removeUser', function (req, res, next) {
-    User.remove({ _id: req.params.id }, function (err, result) {
+    User.remove({
+        _id: req.params.id
+    }, function (err, result) {
         if (err) {
             res.json(err);
-        }
-        else { 
+        } else {
             res.json(result);
         }
     });

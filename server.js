@@ -9,7 +9,8 @@ const url = 'mongodb://stockPingApp:rishi0neha0dev@ds235352.mlab.com:35352/stock
 const app = express();
 
 //middleware to parse data
-app.use(cors())
+//important as the POST request body will be undefined if not initialized as below
+app.use(cors());
 app.use(bodyParser.json());
 
 const route = require('./routes/route');
@@ -19,7 +20,7 @@ mongoose.connect(url, { useNewUrlParser: true });
 
 //mongodb event messages
 mongoose.connection.on('connected', function () {
-    console.log('connected to mLab');
+    console.log('---connected to mLab (DB)---');
 });
 mongoose.connection.on('error', function (err) {
     if (err) { throw err; }    
@@ -33,9 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //testing
 app.get('/', function (req, res) {
-    res.send('Home Page');
+    res.send('---Home Page---');
 });
 
 app.listen(port, function () { 
-    console.log(`Server running on ${port}`);
+    console.log(`---Server running on ${port}---`);
 })
