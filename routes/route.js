@@ -5,46 +5,69 @@ const router = express.Router();
 const User = require('../models/users');
 
 //get all users
-router.get('/getUsers', function (req, res, next) {
+router.get('/getAll', function (req, res, next) {
     User.find(function (err, users) {
         res.json(users);
     })
 });
 
-router.get('/getUser', function (req, res, next) {
-    User.findOne({ username: req.query.username }, function (err, result) {
-        res.json(result);
-        console.log(result);
+router.get('/getOne', function (req, res, next) {
+    User.findOne({
+        username: req.query.username
+    }, function (err, result) {
+        if (err) {
+            throw err
+        } else {
+            res.json(result);
+            console.log(result);
+        }
     });
 });
 
 //add user
-router.post('/registerUser', function (req, res, next) {
+router.post('/register', function (req, res, next) {
     console.log(req.body);
     let newUser = new User({
         username: req.body.username,
         password: req.body.password,
         emailID: req.body.emailID,
-        watchlist: req.body.watchlist
+        watchlist: null
     });
 
     newUser.save(function (err, user) {
         if (err) {
             res.json({
-                msg: 'Error adding user!'
+                msg: 'Error adding user!',
+                error: err
             });
         } else {
             res.json({
-                msg: 'User added!'
+                msg: 'User added!' + user
             });
         }
     });
 
 });
 
+router.post('/update', function (req, res, next) {
+    User.findOneAndUpdate({
+        username: req.body.username
+    }, {
+        watchlist: req.body.watchlist
+    }, function (err, result) {
+        if (err) {
+            throw err
+        } else {
+            res.json({
+                msg: "User updated"
+            });
+        }
+    });
+});
+
 
 //delete user
-router.delete('/removeUser', function (req, res, next) {
+router.delete('/remove', function (req, res, next) {
     User.remove({
         _id: req.params.id
     }, function (err, result) {
