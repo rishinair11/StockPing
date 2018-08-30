@@ -11,6 +11,7 @@ const app = express();
 //middleware to parse data
 //important as the POST request body will be undefined if not initialized as below
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const route = require('./routes/route');
@@ -33,9 +34,9 @@ app.use('/api', route);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //testing
-app.get('/', function (req, res) {
-    res.send('---Home Page---');
-});
+// app.get('/', function (req, res) {
+//     res.sendFile(path.join(__dirname,'/index.html'));
+// });
 
 app.listen(port, function () { 
     console.log(`---Server running on ${port}---`);

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 //get User schema model
 const User = require('../models/users');
@@ -29,7 +30,7 @@ router.post('/register', function (req, res, next) {
     console.log(req.body);
     let newUser = new User({
         username: req.body.username,
-        password: req.body.password,
+        password: bcrypt.hashSync(req.body.password, 10), //added hashed password support in backend (for testing purposes only)
         emailID: req.body.emailID,
         watchlist: null
     });
