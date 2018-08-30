@@ -6,13 +6,14 @@
 
     <style>
         .formDiv {
-            display: block
+            display: inline-table;
         }
     </style>
 </head>
 
 <body>
     <div class ="formDiv">
+        <h2>Register Test</h2>
         <form method="post" action="/api/register/">
             <p>
                 <label for="username">Username</label>
@@ -31,13 +32,26 @@
     </div>
 
     <div class ="formDiv">
+        <h2>Fetch Watchlist Test</h2>
         <form method="get" action="/api/getOne/">
             <p>
                 <label for="username">Username</label>
                 <input type="text" name="username"><br />
             </p>
-
             <input type="submit" value="Get Watchlist">
+        </form>
+    </div>
+
+    <div class ="formDiv">
+        <h2>Sign-in Test</h2>
+        <form method="post" action="/api/login/">
+            <p>
+                <label for="username">Username</label>
+                <input type="text" name="username"><br />
+                <label for="password">Password</label>
+                <input type="password" name="password"><br />
+            </p>
+            <input type="submit" value="Sign-in">
         </form>
     </div>
 

@@ -16,6 +16,7 @@ const UserSchema = mongoose.Schema({
     },
     watchlist: {
         type: Array,
+        default: [],
         required: false
     }
 });
