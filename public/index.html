@@ -3,24 +3,44 @@
 
 <head>
     <title>StockPing | Home Page</title>
+
+    <style>
+        .formDiv {
+            display: block
+        }
+    </style>
 </head>
 
 <body>
-    <form method="post" action="/api/register/">
-        <p>
-            <label for="username">Username</label>
-            <input type="text" name="username"><br />
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input type="password" name="password"><br />
-        </p>
-        <p>
-            <label for="emailID">EmailID</label>
-            <input type="text" name="emailID"><br />
-        </p>
-        <input type="submit" value="Sign-up">
-    </form>
+    <div class ="formDiv">
+        <form method="post" action="/api/register/">
+            <p>
+                <label for="username">Username</label>
+                <input type="text" name="username"><br />
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password"><br />
+            </p>
+            <p>
+                <label for="emailID">EmailID</label>
+                <input type="text" name="emailID"><br />
+            </p>
+            <input type="submit" value="Sign-up">
+        </form>
+    </div>
+
+    <div class ="formDiv">
+        <form method="get" action="/api/getOne/">
+            <p>
+                <label for="username">Username</label>
+                <input type="text" name="username"><br />
+            </p>
+
+            <input type="submit" value="Get Watchlist">
+        </form>
+    </div>
+
 </body>
 
 </html>

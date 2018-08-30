@@ -19,8 +19,8 @@ router.get('/getOne', function (req, res, next) {
         if (err) {
             throw err
         } else {
-            res.json(result);
-            console.log(result);
+            res.json(result.watchlist);
+            console.log(result.watchlist);
         }
     });
 });
