@@ -24,20 +24,15 @@ mongoose.connection.on('connected', function () {
     console.log('---connected to mLab (DB)---');
 });
 mongoose.connection.on('error', function (err) {
-    if (err) { throw err; }    
+    if (err) { throw err; }
 });
 
 //specify route for REST api
 app.use('/api', route);
 
-//static files
+//static files like index.html
 app.use(express.static(path.join(__dirname, 'public')));
 
-//testing
-// app.get('/', function (req, res) {
-//     res.sendFile(path.join(__dirname,'/index.html'));
-// });
-
-app.listen(port, function () { 
+app.listen(process.env.PORT || port, function () {
     console.log(`---Server running on ${port}---`);
 })
